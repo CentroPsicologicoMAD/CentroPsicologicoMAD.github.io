@@ -257,84 +257,166 @@ a { color: inherit; }
 @media (max-width: 900px) { .servicios-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .servicios-grid { grid-template-columns: minmax(0, 1fr); } }
 
-/* ===== 5. Calculadora ===== */
-.calculadora-seccion { background: var(--mad-lavanda-claro); }
-.calculadora-seccion h2 { color: var(--mad-azul-profundo); font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin-bottom: 0; text-align: center; }
-.calculadora-tarjeta {
-  background: var(--mad-blanco); border-radius: 20px; padding: 2.25rem; max-width: 680px; margin: 2rem auto 0;
-  box-shadow: 0 10px 30px rgba(36,50,107,0.1);
-  opacity: 0; transform: translateY(12px);
-  transition: opacity var(--mad-duracion-media) var(--mad-easing), transform var(--mad-duracion-media) var(--mad-easing);
-}
-.calculadora-tarjeta.visible { opacity: 1; transform: translateY(0); }
-.control-slider { margin-bottom: 1.75rem; }
-.control-slider label { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--mad-fuente-titulos); font-weight: 600; font-size: 0.92rem; color: var(--mad-azul-profundo); margin-bottom: 0.6rem; }
-.control-slider output { font-family: var(--mad-fuente-cuerpo); font-weight: 400; color: var(--mad-azul-medio); flex-shrink: 0; }
-.control-slider input[type="range"] {
-  width: 100%; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 999px;
-  background: var(--mad-lavanda-claro); outline: none; display: block;
-}
-.control-slider input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%;
-  background: var(--mad-gradiente); cursor: pointer; border: 3px solid var(--mad-blanco); box-shadow: 0 2px 6px rgba(36,50,107,0.3);
-}
-.control-slider input[type="range"]::-moz-range-thumb {
-  width: 26px; height: 26px; border-radius: 50%; background: var(--mad-gradiente); cursor: pointer; border: 3px solid var(--mad-blanco); box-shadow: 0 2px 6px rgba(36,50,107,0.3);
-}
-.control-slider input[type="range"]:focus-visible { outline: 2px solid var(--mad-azul-profundo); outline-offset: 4px; }
-.resultado-calculadora { text-align: center; margin-top: 2rem; padding-top: 1.75rem; border-top: 1px solid var(--mad-lavanda-claro); }
-.resultado-calculadora .ahorro {
-  font-family: var(--mad-fuente-titulos); font-weight: 700; font-size: clamp(2rem, 5vw, 2.8rem);
-  background: var(--mad-gradiente); -webkit-background-clip: text; background-clip: text; color: transparent;
-  display: inline-block; transition: transform 220ms var(--mad-easing);
-}
-.resultado-calculadora .ahorro.pulso { transform: scale(1.03); }
-.resultado-calculadora .detalle-pago { color: var(--mad-azul-medio); font-size: 0.98rem; margin-top: 0.4rem; }
-.calculadora-nota { font-size: 0.82rem; color: var(--mad-azul-profundo); opacity: 0.8; margin-top: 1.25rem; text-align: center; }
+/* ===== 5. Sumamos a lo que Sofka ya construyó ===== */
+.sumamos-seccion { background: var(--mad-lavanda-claro); }
+.sumamos-seccion h2 { color: var(--mad-azul-profundo); font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin-bottom: 1rem; max-width: 680px; }
+.sumamos-texto { color: var(--mad-azul-profundo); font-size: 1.05rem; max-width: 680px; margin-bottom: 2.5rem; }
+.sumamos-tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
+.sumamos-tarjeta { background: var(--mad-blanco); border-radius: 18px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(36,50,107,0.08); }
+.sumamos-tarjeta svg { color: var(--mad-azul-medio); margin-bottom: 0.9rem; }
+.sumamos-tarjeta h3 { color: var(--mad-azul-profundo); font-size: 1.05rem; margin-bottom: 0.4rem; }
+.sumamos-tarjeta p { color: var(--mad-azul-medio); font-size: 0.92rem; }
+@media (max-width: 760px) { .sumamos-tarjetas { grid-template-columns: 1fr; } }
 
-/* ===== 6. ¿Para quién? — tabs ===== */
-.para-quien { background: var(--mad-blanco); }
-.para-quien h2 { color: var(--mad-azul-profundo); font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin-bottom: 2rem; text-align: center; }
-.tablist {
-  display: flex; gap: 0.4rem; background: var(--mad-lavanda-claro); border-radius: 999px;
-  padding: 0.4rem; max-width: 560px; margin: 0 auto 2rem; position: relative;
+.capas-bloque { max-width: 720px; }
+.capas-titulo { color: var(--mad-azul-profundo); font-size: clamp(1.4rem, 3.2vw, 1.9rem); margin-bottom: 1.5rem; }
+.capa { background: var(--mad-blanco); border-radius: 20px; margin-bottom: 1rem; box-shadow: 0 8px 24px rgba(36,50,107,0.08); }
+.capa-cabecera {
+  width: 100%; background: none; border: none; cursor: pointer; text-align: left;
+  display: flex; align-items: center; gap: 1rem; padding: 1.5rem; min-height: 44px;
 }
-.tab-indicador {
-  position: absolute; top: 0.4rem; left: 0; height: calc(100% - 0.8rem);
-  background: var(--mad-gradiente); border-radius: 999px;
-  transition: left var(--mad-duracion-suave) var(--mad-easing), width var(--mad-duracion-suave) var(--mad-easing);
-}
-.tab-boton {
-  flex: 1; position: relative; z-index: 1; border: none; background: transparent;
-  font-family: var(--mad-fuente-titulos); font-weight: 600; font-size: 0.92rem;
-  color: var(--mad-azul-profundo); padding: 0.7rem 0.75rem; border-radius: 999px; cursor: pointer;
-  min-height: 44px; transition: color var(--mad-duracion-suave) var(--mad-easing);
-}
-.tab-boton[aria-selected="true"] { color: var(--mad-blanco); }
-.tab-boton:focus-visible { outline: 2px solid var(--mad-azul-profundo); outline-offset: 2px; }
-.tab-paneles { position: relative; max-width: 640px; margin: 0 auto; min-height: 9rem; }
-.tab-panel {
-  position: absolute; inset: 0; opacity: 0; transform: translateY(8px);
-  transition: opacity var(--mad-duracion-suave) var(--mad-easing), transform var(--mad-duracion-suave) var(--mad-easing);
-  pointer-events: none;
-}
-.tab-panel[data-activo="true"] { opacity: 1; transform: translateY(0); pointer-events: auto; position: relative; }
-.tab-panel h3 { color: var(--mad-azul-profundo); font-size: 1.15rem; margin-bottom: 0.6rem; }
-.tab-panel p { color: var(--mad-azul-profundo); font-size: 1rem; }
+.capa-numero { font-family: var(--mad-fuente-titulos); font-weight: 700; color: var(--mad-azul-medio); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; flex-shrink: 0; }
+.capa-resumen { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+.capa-resumen strong { color: var(--mad-azul-profundo); font-family: var(--mad-fuente-titulos); font-size: 1.1rem; }
+.capa-pill { align-self: flex-start; background: var(--mad-lavanda-claro); color: var(--mad-azul-profundo); font-size: 0.72rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 999px; }
+.capa-pill.secundaria { background: var(--mad-azul-profundo); color: var(--mad-blanco); }
+.capa-cabecera .icono-mas { color: var(--mad-azul-medio); flex-shrink: 0; transition: transform var(--mad-duracion-suave) var(--mad-easing); }
+.capa[data-abierto="true"] .icono-mas { transform: rotate(45deg); }
+.capa-detalle { max-height: 0; overflow: hidden; transition: max-height var(--mad-duracion-media) var(--mad-easing); }
+.capa-detalle-interior { padding: 0 1.5rem 1.5rem; }
+.capa-detalle-interior p { color: var(--mad-azul-medio); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.9rem; }
+.capa-detalle-interior p:last-child { margin-bottom: 0; }
+.capa-confidencialidad { background: var(--mad-lavanda-claro); border-radius: 12px; color: var(--mad-azul-profundo); font-size: 0.85rem; padding: 0.9rem 1rem; line-height: 1.5; }
+.capas-nota { font-size: 0.85rem; color: var(--mad-azul-profundo); opacity: 0.85; margin-top: 0.5rem; }
 
-/* ===== 7. Conoce MAD ===== */
+/* ===== 6. Arma tu familia Sofkiana ===== */
+.familia-seccion { background: var(--mad-blanco); overflow: visible; }
+.familia-contenido h2 { color: var(--mad-azul-profundo); font-size: clamp(1.6rem, 3.6vw, 2.3rem); text-align: center; margin-bottom: 0.5rem; }
+.familia-intro { color: var(--mad-azul-medio); text-align: center; max-width: 520px; margin: 0 auto 2rem; }
+.chips-agregar { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 0.75rem; }
+.chip-agregar {
+  font-family: var(--mad-fuente-titulos); font-weight: 600; font-size: 0.86rem; padding: 0.6rem 1.1rem; border-radius: 999px;
+  border: 1px solid var(--mad-lavanda); background: var(--mad-blanco); color: var(--mad-azul-profundo); cursor: pointer; min-height: 44px;
+  transition: background var(--mad-duracion-suave) var(--mad-easing), opacity var(--mad-duracion-suave) var(--mad-easing);
+}
+.chip-agregar:hover:not(:disabled) { background: var(--mad-lavanda-claro); }
+.chip-agregar:disabled { opacity: 0.4; cursor: not-allowed; }
+.chip-agregar:focus-visible, .chip-servicio:focus-visible, .miembro-quitar:focus-visible { outline: 2px solid var(--mad-azul-profundo); outline-offset: 2px; }
+.familia-limite { text-align: center; font-size: 0.85rem; color: var(--mad-azul-medio); min-height: 1.2rem; margin-bottom: 2rem; }
+
+.familia-layout { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start; }
+.familia-miembros { display: flex; flex-direction: column; gap: 1.25rem; }
+.familia-vacio { color: var(--mad-azul-medio); font-size: 0.95rem; text-align: center; padding: 2.5rem 1.5rem; border: 1px dashed var(--mad-lavanda); border-radius: 16px; }
+.miembro-tarjeta {
+  background: var(--mad-blanco); border: 1px solid var(--mad-lavanda-claro); border-radius: 18px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(36,50,107,0.08);
+  opacity: 0; transform: translateY(12px); transition: opacity var(--mad-duracion-media) var(--mad-easing), transform var(--mad-duracion-media) var(--mad-easing);
+}
+.miembro-tarjeta.visible { opacity: 1; transform: translateY(0); }
+.miembro-cabecera { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.1rem; }
+.miembro-avatar { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; background: var(--mad-gradiente); display: flex; align-items: center; justify-content: center; position: relative; }
+.miembro-avatar::after { content: ""; width: 38%; height: 38%; border-radius: 50%; background: var(--mad-blanco); opacity: 0.85; }
+.miembro-avatar.tipo-bebe, .miembro-avatar.tipo-nino, .miembro-avatar.tipo-adolescente { background: linear-gradient(135deg, var(--mad-lavanda), var(--mad-azul-medio)); width: 38px; height: 38px; }
+.miembro-nombre { font-family: var(--mad-fuente-titulos); font-weight: 600; color: var(--mad-azul-profundo); flex: 1; }
+.miembro-quitar { background: none; border: none; color: var(--mad-azul-medio); font-size: 1.3rem; line-height: 1; cursor: pointer; min-width: 44px; min-height: 44px; border-radius: 50%; }
+.miembro-quitar:hover { background: var(--mad-lavanda-claro); }
+.miembro-servicios { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.1rem; }
+.chip-servicio {
+  font-family: var(--mad-fuente-cuerpo); font-size: 0.82rem; padding: 0.5rem 0.85rem; border-radius: 14px;
+  border: 1px solid var(--mad-lavanda); background: var(--mad-blanco); color: var(--mad-azul-profundo); cursor: pointer;
+  min-height: 44px; display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1.3; gap: 0.1rem;
+}
+.chip-servicio[aria-pressed="true"] { background: var(--mad-gradiente); color: var(--mad-blanco); border-color: transparent; }
+.chip-servicio .chip-pro { font-size: 0.7rem; opacity: 0.75; }
+.miembro-sesiones label { display: flex; flex-direction: column; gap: 0.5rem; }
+.miembro-sesiones label > span { display: flex; justify-content: space-between; font-family: var(--mad-fuente-titulos); font-weight: 600; font-size: 0.86rem; color: var(--mad-azul-profundo); }
+.miembro-sesiones input[type="range"] {
+  width: 100%; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 999px; background: var(--mad-lavanda-claro); display: block;
+}
+.miembro-sesiones input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--mad-gradiente); cursor: pointer; border: 3px solid var(--mad-blanco); box-shadow: 0 2px 6px rgba(36,50,107,0.3);
+}
+.miembro-sesiones input[type="range"]::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--mad-gradiente); cursor: pointer; border: 3px solid var(--mad-blanco);
+}
+.miembro-sesiones input[type="range"]:focus-visible { outline: 2px solid var(--mad-azul-profundo); outline-offset: 4px; }
+
+.resumen-familia { position: sticky; top: 2rem; background: var(--mad-lavanda-claro); border-radius: 20px; padding: 1.75rem; transition: transform var(--mad-duracion-suave) var(--mad-easing); }
+.resumen-linea { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.6rem; color: var(--mad-azul-profundo); font-size: 0.92rem; }
+.resumen-linea.principal { align-items: center; }
+.resumen-linea.principal strong { font-family: var(--mad-fuente-titulos); font-size: 1.5rem; background: var(--mad-gradiente); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.resumen-nota { font-size: 0.76rem; color: var(--mad-azul-profundo); opacity: 0.85; margin: 0.75rem 0 1.1rem; line-height: 1.5; }
+.resumen-boton { width: 100%; }
+@media (max-width: 900px) {
+  .familia-layout { grid-template-columns: 1fr; }
+  .familia-miembros { padding-bottom: 280px; }
+  .resumen-familia {
+    position: fixed; top: auto; left: 0; right: 0; bottom: 0; border-radius: 20px 20px 0 0;
+    box-shadow: 0 -8px 24px rgba(36,50,107,0.18); z-index: 900; max-height: 42vh; overflow-y: auto;
+  }
+  .resumen-familia.resumen-oculto { transform: translateY(110%); }
+}
+
+/* ===== 7. Conoce MAD — galería y lightbox ===== */
 .conoce-mad { background: var(--mad-lavanda-claro); }
-.conoce-mad .seccion-contenido { max-width: 1040px; }
-.conoce-mad h2 { color: var(--mad-azul-profundo); font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin-bottom: 2rem; }
-.destacado-centro { display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; }
-.destacado-centro .foto-envoltura { flex: 1 1 320px; max-width: 580px; opacity: 0; transform: scale(1.05); transition: opacity var(--mad-duracion-protagonista) var(--mad-easing), transform var(--mad-duracion-protagonista) var(--mad-easing); }
-.destacado-centro .foto-envoltura.visible { opacity: 1; transform: scale(1); }
-.destacado-centro img { width: 100%; height: 340px; object-fit: cover; border-radius: 20px; box-shadow: 0 14px 34px rgba(36,50,107,0.14); display: block; }
-.destacado-centro .texto { flex: 1 1 280px; }
-.destacado-centro .eyebrow { display: inline-block; background: var(--mad-blanco); color: var(--mad-azul-profundo); font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.8rem; border-radius: 999px; margin-bottom: 0.9rem; }
-.destacado-centro h3 { color: var(--mad-azul-profundo); font-size: 1.3rem; margin-bottom: 0.6rem; }
-.destacado-centro p { color: var(--mad-azul-profundo); font-size: 1.02rem; }
-@media (max-width: 760px) { .destacado-centro img { height: 260px; } }
+.conoce-mad .seccion-contenido { max-width: 1100px; }
+.conoce-mad h2 { color: var(--mad-azul-profundo); font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin-bottom: 0.5rem; }
+.conoce-intro { color: var(--mad-azul-profundo); margin-bottom: 2rem; }
+.galeria { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.5rem; -webkit-overflow-scrolling: touch; }
+.galeria-item {
+  position: relative; flex: 0 0 78%; scroll-snap-align: start; border-radius: 18px; overflow: hidden;
+  border: none; padding: 0; cursor: pointer; background: none; aspect-ratio: 4 / 5;
+}
+.galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--mad-duracion-media) var(--mad-easing); }
+.galeria-item:hover img, .galeria-item:focus-visible img { transform: scale(1.04); }
+.galeria-caption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem;
+  background: linear-gradient(to top, rgba(36,50,107,0.8), transparent);
+  color: var(--mad-blanco); font-size: 0.88rem; font-family: var(--mad-fuente-titulos); font-weight: 600; text-align: left;
+}
+.galeria-item:focus-visible { outline: 3px solid var(--mad-azul-profundo); outline-offset: 3px; }
+@media (min-width: 860px) {
+  .galeria { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; scroll-snap-type: none; }
+  .galeria-item { flex: unset; aspect-ratio: 1 / 1; }
+  .galeria-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: 1 / 1.15; }
+}
+@media (max-width: 600px) { .galeria-item { flex-basis: 85%; } }
+
+.lightbox { position: fixed; inset: 0; background: rgba(15,20,45,0.92); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 5vh 5vw; }
+.lightbox[hidden] { display: none; }
+.lightbox-imagen { max-width: min(900px, 88vw); max-height: 72vh; border-radius: 12px; object-fit: contain; }
+.lightbox-caption { position: absolute; bottom: 6vh; left: 0; right: 0; text-align: center; color: var(--mad-blanco); font-family: var(--mad-fuente-titulos); padding: 0 4rem; }
+.lightbox-cerrar { position: absolute; top: 2vh; right: 3vw; background: none; border: none; color: var(--mad-blanco); font-size: 2rem; cursor: pointer; min-width: 44px; min-height: 44px; }
+.lightbox-anterior, .lightbox-siguiente {
+  position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); border: none;
+  color: var(--mad-blanco); font-size: 1.8rem; width: 48px; height: 48px; border-radius: 50%; cursor: pointer;
+}
+.lightbox-anterior { left: 3vw; }
+.lightbox-siguiente { right: 3vw; }
+.lightbox-anterior:focus-visible, .lightbox-siguiente:focus-visible, .lightbox-cerrar:focus-visible { outline: 2px solid var(--mad-blanco); outline-offset: 2px; }
+
+/* ===== Nuestro equipo ===== */
+.equipo-seccion { background: var(--mad-blanco); }
+.equipo-seccion h2 { color: var(--mad-azul-profundo); font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin-bottom: 2rem; }
+.equipo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; }
+.equipo-tarjeta {
+  background: var(--mad-blanco); border: 1px solid var(--mad-lavanda-claro); border-radius: 18px; padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(36,50,107,0.08); transition: background var(--mad-duracion-suave) var(--mad-easing);
+}
+.equipo-tarjeta[data-abierto="true"] { background: var(--mad-lavanda-claro); }
+.equipo-tarjeta-boton {
+  width: 100%; background: none; border: none; cursor: pointer; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 0.35rem; position: relative; min-height: 44px; padding: 0;
+}
+.equipo-monograma {
+  width: 64px; height: 64px; border-radius: 50%; background: var(--mad-gradiente); color: var(--mad-blanco);
+  font-family: var(--mad-fuente-titulos); font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; margin-bottom: 0.4rem;
+}
+.equipo-nombre { font-family: var(--mad-fuente-titulos); font-weight: 600; color: var(--mad-azul-profundo); font-size: 1rem; }
+.equipo-rol { font-size: 0.8rem; color: var(--mad-azul-profundo); line-height: 1.4; }
+.equipo-tarjeta-boton .icono-mas { position: absolute; top: 0; right: 0; color: var(--mad-azul-medio); transition: transform var(--mad-duracion-suave) var(--mad-easing); }
+.equipo-tarjeta[data-abierto="true"] .icono-mas { transform: rotate(45deg); }
+.equipo-detalle { max-height: 0; overflow: hidden; transition: max-height var(--mad-duracion-media) var(--mad-easing); text-align: center; }
+.equipo-detalle p { padding-top: 0.9rem; color: var(--mad-azul-profundo); font-size: 0.9rem; }
 
 /* ===== 8. Cómo funciona ===== */
 .como-funciona { background: var(--mad-blanco); }
@@ -468,20 +550,23 @@ a { color: inherit; }
   .portada .logo-firma, .portada .etiqueta, .portada h1, .portada .subtitulo, .portada .boton,
   .cita::before, .tarjeta-propuesta, .tarjeta-propuesta .numero-grande,
   .paso, .mockup-chat, .logo-textura, .cierre .seccion-contenido,
-  .foto-envoltura, .tarjeta-telefono, .barra-avance .relleno,
-  .calculadora-tarjeta, .plataforma-texto,
+  .tarjeta-telefono, .barra-avance .relleno,
+  .plataforma-texto, .miembro-tarjeta,
   .revelar, .revelar-simple {
     opacity: 1 !important; transform: none !important; transition: none !important;
   }
   .logo-textura.visible { opacity: 0.1 !important; }
   .logo-firma img { animation: none !important; }
-  .tab-indicador, .tab-panel, .tab-boton, .boton { transition: none !important; }
+  .boton { transition: none !important; }
   .angulo-seccion .forma { transform: none !important; }
   .disclosure-detalle, .disclosure-cabecera .icono-mas,
   .servicio-detalle, .servicio-card-boton .icono-mas, .servicio-card,
-  .resultado-calculadora .ahorro {
+  .capa-detalle, .capa-cabecera .icono-mas,
+  .equipo-detalle, .equipo-tarjeta-boton .icono-mas, .equipo-tarjeta,
+  .galeria-item img, .resumen-familia {
     transition: none !important;
   }
+  .galeria-item:hover img, .galeria-item:focus-visible img { transform: none !important; }
   .circulo-respiracion-envoltura { display: none !important; }
   .respiracion-texto-alt { display: block !important; }
 }
@@ -489,9 +574,6 @@ a { color: inherit; }
 @media (max-width: 760px) {
   section { padding: 8vh 6vw; }
   .grid-funciona { grid-template-columns: 1fr; gap: 2.5rem; }
-  .tablist { max-width: 100%; }
-  .tab-boton { font-size: 0.82rem; padding: 0.7rem 0.4rem; }
-  .destacado-centro { flex-direction: column; }
   .plataforma-layout { flex-direction: column; }
 }
 </style>
@@ -503,7 +585,7 @@ a { color: inherit; }
 <section class="portada" id="portada">
   <div class="seccion-contenido">
     <div class="logo-firma">
-      <img src="img/logo-white.webp" width="801" height="801" alt="MAD, Centro Psicológico">
+      <img src="img/logo-white-sm.webp" width="240" height="240" alt="MAD, Centro Psicológico">
       <span class="marca-texto">Centro Psicológico MAD</span>
     </div>
     <p class="etiqueta">Propuesta de convenio · Centro Psicológico MAD × Sofka Technologies</p>
@@ -526,6 +608,70 @@ a { color: inherit; }
   <div class="seccion-contenido">
     <h2 class="revelar">Un beneficio que se siente <span class="acento">en casa</span>.</h2>
     <p class="revelar">Un beneficio de bienestar suele pensar solo en el colaborador. El nuestro incluye también a su pareja y a sus hijos: desde la estimulación temprana y el lenguaje de los más pequeños hasta la adolescencia y la terapia de pareja.</p>
+  </div>
+</section>
+
+<section class="sumamos-seccion">
+  <div class="seccion-contenido">
+    <h2 class="revelar">Sumamos a lo que Sofka <span class="acento">ya construyó</span>.</h2>
+    <p class="sumamos-texto revelar">Sofka ya acompaña a sus Sofkianos con Brújula del Ser. MAD no viene a reemplazarlo: viene a sumar donde hoy hace falta llegar.</p>
+
+    <div class="sumamos-tarjetas">
+      <div class="sumamos-tarjeta revelar">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 20c0-2.2.8-4 2.5-5.3"/></svg>
+        <h3>Toda la familia</h3>
+        <p>Pareja e hijos, con el mismo beneficio.</p>
+      </div>
+      <div class="sumamos-tarjeta revelar">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V6a2 2 0 0 1 2-2h5v17"/><path d="M11 4h7a2 2 0 0 1 2 2v13"/><path d="M4 19h16"/></svg>
+        <h3>Especialistas en la infancia</h3>
+        <p>Terapia de lenguaje, psicopedagogía, estimulación temprana y acuática.</p>
+      </div>
+      <div class="sumamos-tarjeta revelar">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17.5 12a5.5 5.5 0 1 1-5.5-5.5"/><path d="M12 2v4"/><path d="M19.07 4.93l-2.83 2.83"/></svg>
+        <h3>Sin tope ni espera</h3>
+        <p>US$20 por sesión, todas las veces que se necesite.</p>
+      </div>
+    </div>
+
+    <div class="capas-bloque">
+      <h3 class="capas-titulo revelar-simple">Un convenio en <span class="acento">dos capas</span>.</h3>
+
+      <div class="capa revelar" data-abierto="false">
+        <button class="capa-cabecera" data-disclosure-trigger aria-expanded="false" aria-controls="capa-1-detalle">
+          <span class="capa-numero">Capa 1</span>
+          <span class="capa-resumen">
+            <strong>Desde el primer día</strong>
+            <span class="capa-pill">Sin costo para Sofka</span>
+          </span>
+          <svg class="icono-mas" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="capa-detalle" id="capa-1-detalle" hidden>
+          <div class="capa-detalle-interior">
+            <p>US$20 por sesión para cada Sofkiano, su pareja y sus hijos, en todos nuestros servicios, sin tope de sesiones. Más hasta 2 talleres por semestre para el equipo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="capa revelar" data-abierto="false">
+        <button class="capa-cabecera" data-disclosure-trigger aria-expanded="false" aria-controls="capa-2-detalle">
+          <span class="capa-numero">Capa 2</span>
+          <span class="capa-resumen">
+            <strong>Cuando Sofka lo decida</strong>
+            <span class="capa-pill secundaria">Aliado de Brújula del Ser</span>
+          </span>
+          <svg class="icono-mas" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="capa-detalle" id="capa-2-detalle" hidden>
+          <div class="capa-detalle-interior">
+            <p>Sumamos nuestro equipo como prestador del programa a US$20 por sesión. Sofka mantiene su modelo de copago y su presupuesto rinde más. Facturamos mensualmente con nuestro RUC la parte que cubre Sofka.</p>
+            <div class="capa-confidencialidad">Para facturar, solo reportamos el código del colaborador y el número de sesión; nunca el motivo de consulta ni información clínica.</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="capas-nota revelar-simple">La capa 2 es opcional y se puede activar en cualquier momento. El detalle está en la hoja resumen.</p>
+    </div>
   </div>
 </section>
 
@@ -598,7 +744,7 @@ a { color: inherit; }
         <div class="servicio-card" data-abierto="false">
           <button class="servicio-card-boton" data-disclosure-trigger aria-expanded="false" aria-controls="serv-1">
             <span class="servicio-monograma" aria-hidden="true">PI</span>
-            <span class="servicio-card-texto"><span class="nombre">Psicología infantil</span><span class="precio">US$15</span></span>
+            <span class="servicio-card-texto"><span class="nombre">Psicología infantil</span><span class="precio">US$20</span></span>
             <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div class="servicio-detalle" id="serv-1" hidden><p>Acompañamiento en TDAH, TEA, síndrome de Down y más.</p></div>
@@ -606,7 +752,7 @@ a { color: inherit; }
         <div class="servicio-card" data-abierto="false">
           <button class="servicio-card-boton" data-disclosure-trigger aria-expanded="false" aria-controls="serv-2">
             <span class="servicio-monograma" aria-hidden="true">TL</span>
-            <span class="servicio-card-texto"><span class="nombre">Terapia de lenguaje</span><span class="precio">US$15</span></span>
+            <span class="servicio-card-texto"><span class="nombre">Terapia de lenguaje</span><span class="precio">US$20</span></span>
             <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div class="servicio-detalle" id="serv-2" hidden><p>Para que cada niño encuentre su voz.</p></div>
@@ -614,7 +760,7 @@ a { color: inherit; }
         <div class="servicio-card" data-abierto="false">
           <button class="servicio-card-boton" data-disclosure-trigger aria-expanded="false" aria-controls="serv-3">
             <span class="servicio-monograma" aria-hidden="true">PE</span>
-            <span class="servicio-card-texto"><span class="nombre">Psicopedagogía y evaluación</span><span class="precio">US$15</span></span>
+            <span class="servicio-card-texto"><span class="nombre">Psicopedagogía y evaluación</span><span class="precio">US$20</span></span>
             <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div class="servicio-detalle" id="serv-3" hidden><p>Entender cómo aprende y acompañarlo.</p></div>
@@ -622,7 +768,7 @@ a { color: inherit; }
         <div class="servicio-card" data-abierto="false">
           <button class="servicio-card-boton" data-disclosure-trigger aria-expanded="false" aria-controls="serv-4">
             <span class="servicio-monograma" aria-hidden="true">ET</span>
-            <span class="servicio-card-texto"><span class="nombre">Estimulación temprana</span><span class="precio">US$15</span></span>
+            <span class="servicio-card-texto"><span class="nombre">Estimulación temprana</span><span class="precio">US$20</span></span>
             <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div class="servicio-detalle" id="serv-4" hidden><p>El vínculo y el movimiento, desde los primeros meses.</p></div>
@@ -630,7 +776,7 @@ a { color: inherit; }
         <div class="servicio-card" data-abierto="false">
           <button class="servicio-card-boton" data-disclosure-trigger aria-expanded="false" aria-controls="serv-5">
             <span class="servicio-monograma" aria-hidden="true">AO</span>
-            <span class="servicio-card-texto"><span class="nombre">Adolescentes</span><span class="precio">US$15</span></span>
+            <span class="servicio-card-texto"><span class="nombre">Adolescentes</span><span class="precio">US$20</span></span>
             <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div class="servicio-detalle" id="serv-5" hidden><p>Ansiedad, depresión, habilidades sociales, en un espacio confidencial.</p></div>
@@ -638,7 +784,7 @@ a { color: inherit; }
         <div class="servicio-card" data-abierto="false">
           <button class="servicio-card-boton" data-disclosure-trigger aria-expanded="false" aria-controls="serv-6">
             <span class="servicio-monograma" aria-hidden="true">AU</span>
-            <span class="servicio-card-texto"><span class="nombre">Adultos</span><span class="precio">US$15</span></span>
+            <span class="servicio-card-texto"><span class="nombre">Adultos</span><span class="precio">US$20</span></span>
             <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div class="servicio-detalle" id="serv-6" hidden><p>Ansiedad, depresión, burnout.</p></div>
@@ -646,7 +792,7 @@ a { color: inherit; }
         <div class="servicio-card" data-abierto="false">
           <button class="servicio-card-boton" data-disclosure-trigger aria-expanded="false" aria-controls="serv-7">
             <span class="servicio-monograma" aria-hidden="true">TP</span>
-            <span class="servicio-card-texto"><span class="nombre">Terapia de pareja</span><span class="precio">US$15</span></span>
+            <span class="servicio-card-texto"><span class="nombre">Terapia de pareja</span><span class="precio">US$20</span></span>
             <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div class="servicio-detalle" id="serv-7" hidden><p>Aprender a escucharse y a acompañarse.</p></div>
@@ -654,7 +800,7 @@ a { color: inherit; }
         <div class="servicio-card" data-abierto="false">
           <button class="servicio-card-boton" data-disclosure-trigger aria-expanded="false" aria-controls="serv-8">
             <span class="servicio-monograma"><img src="img/baby-spa.webp" width="1600" height="2724" alt="" loading="lazy"></span>
-            <span class="servicio-card-texto"><span class="nombre">Baby Spa</span><span class="precio">US$15</span></span>
+            <span class="servicio-card-texto"><span class="nombre">Baby Spa</span><span class="precio">US$20</span></span>
             <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div class="servicio-detalle" id="serv-8" hidden><p>Estimulación acuática de 0 a 24 meses.</p></div>
@@ -674,7 +820,7 @@ a { color: inherit; }
             <li>Las sesiones se reservan según la disponibilidad de nuestra agenda. Coordinamos el horario directamente con cada Sofkiano por WhatsApp.</li>
             <li>Si necesitas cancelar o reprogramar, avísanos con al menos 24 horas de anticipación.</li>
             <li>Si no asistes y no cancelaste ni reprogramaste con 24 horas de anticipación, se cobra US$10 por la sesión reservada. Así cuidamos el espacio que guardamos para ti y para otras familias.</li>
-            <li>La tarifa de US$15 aplica presentando la credencial de Sofka e indicando el código SOFKIANO al reservar.</li>
+            <li>La tarifa de US$20 aplica presentando la credencial de Sofka e indicando el código SOFKIANO al reservar.</li>
           </ul>
         </div>
       </div>
@@ -682,53 +828,30 @@ a { color: inherit; }
   </div>
 </section>
 
-<section class="calculadora-seccion">
-  <div class="seccion-contenido">
-    <h2 class="revelar-simple">¿Cuánto <span class="acento">ahorra</span> una familia?</h2>
-    <div class="calculadora-tarjeta">
-      <div class="control-slider">
-        <label for="slider-personas"><span>Personas de la familia que usan el beneficio</span><output id="valor-personas" for="slider-personas">2</output></label>
-        <input type="range" id="slider-personas" min="1" max="5" value="2" step="1">
-      </div>
-      <div class="control-slider">
-        <label for="slider-sesiones"><span>Sesiones al mes por persona</span><output id="valor-sesiones" for="slider-sesiones">2</output></label>
-        <input type="range" id="slider-sesiones" min="1" max="4" value="2" step="1">
-      </div>
-      <div class="control-slider">
-        <label for="slider-meses"><span>Meses</span><output id="valor-meses" for="slider-meses">6</output></label>
-        <input type="range" id="slider-meses" min="1" max="12" value="6" step="1">
-      </div>
-      <div class="resultado-calculadora">
-        <div class="ahorro" id="resultado-ahorro">Ahorro: US$240</div>
-        <p class="detalle-pago" id="resultado-detalle">Pagan US$360 en lugar de US$600.</p>
-      </div>
-      <p class="calculadora-nota">Cálculo referencial con la tarifa regular de US$25 y la del convenio de US$15 por sesión.</p>
-    </div>
-  </div>
-</section>
+<section class="familia-seccion" id="arma-familia">
+  <div class="seccion-contenido familia-contenido">
+    <h2 class="revelar-simple">Arma tu <span class="acento">familia</span> Sofkiana.</h2>
+    <p class="familia-intro revelar-simple">Elige quiénes son parte de tu casa y mira cómo te acompañamos.</p>
 
-<section class="para-quien">
-  <div class="seccion-contenido">
-    <h2 class="revelar-simple">¿Para quién?</h2>
-    <div class="tablist" role="tablist" aria-label="¿Para quién es el beneficio?">
-      <div class="tab-indicador" id="tab-indicador"></div>
-      <button class="tab-boton" role="tab" id="tab-ti" aria-selected="true" aria-controls="panel-ti" tabindex="0">Para ti</button>
-      <button class="tab-boton" role="tab" id="tab-pareja" aria-selected="false" aria-controls="panel-pareja" tabindex="-1">Para tu pareja</button>
-      <button class="tab-boton" role="tab" id="tab-hijos" aria-selected="false" aria-controls="panel-hijos" tabindex="-1">Para tus hijos</button>
+    <div class="chips-agregar" role="group" aria-label="Agregar integrantes">
+      <button type="button" class="chip-agregar" data-tipo="tu">+ Tú</button>
+      <button type="button" class="chip-agregar" data-tipo="pareja">+ Tu pareja</button>
+      <button type="button" class="chip-agregar" data-tipo="bebe">+ Bebé (0–2 años)</button>
+      <button type="button" class="chip-agregar" data-tipo="nino">+ Niño o niña (3–11)</button>
+      <button type="button" class="chip-agregar" data-tipo="adolescente">+ Adolescente (12–17)</button>
     </div>
-    <div class="tab-paneles">
-      <div class="tab-panel" role="tabpanel" id="panel-ti" aria-labelledby="tab-ti" data-activo="true">
-        <h3>Terapia individual</h3>
-        <p>Ansiedad, depresión, burnout. Un espacio confidencial, a tu ritmo.</p>
-      </div>
-      <div class="tab-panel" role="tabpanel" id="panel-pareja" aria-labelledby="tab-pareja" data-activo="false" hidden>
-        <h3>Terapia de pareja</h3>
-        <p>Aprender a escucharse y a acompañarse.</p>
-      </div>
-      <div class="tab-panel" role="tabpanel" id="panel-hijos" aria-labelledby="tab-hijos" data-activo="false" hidden>
-        <h3>Para tus hijos</h3>
-        <p>0–24 meses: estimulación temprana. Desde los 3 años: psicología infantil, terapia de lenguaje, evaluación psicológica y acompañamiento en TDAH, TEA y síndrome de Down. Adolescentes: ansiedad, depresión y habilidades sociales.</p>
-      </div>
+    <p class="familia-limite" id="familia-limite" aria-live="polite"></p>
+
+    <div class="familia-layout">
+      <div class="familia-miembros" id="familia-miembros"></div>
+
+      <aside class="resumen-familia" id="resumen-familia" aria-live="polite">
+        <div class="resumen-linea principal"><span>Con MAD</span><strong id="resumen-con-mad">US$0 al mes</strong></div>
+        <div class="resumen-linea"><span>Tarifa regular</span><strong id="resumen-regular">US$0</strong></div>
+        <div class="resumen-linea ahorro"><span>Ahorro en un año</span><strong id="resumen-ahorro">US$0</strong></div>
+        <p class="resumen-nota">Cálculo referencial. Las sesiones se coordinan según la disponibilidad de nuestra agenda.</p>
+        <a class="boton boton-principal resumen-boton" id="resumen-whatsapp" href="https://wa.me/593999295186" target="_blank" rel="noopener">Quiero esto para mi familia</a>
+      </aside>
     </div>
   </div>
 </section>
@@ -736,18 +859,92 @@ a { color: inherit; }
 <section class="conoce-mad">
   <div class="seccion-contenido">
     <h2 class="revelar-simple">Conoce MAD</h2>
-    <div class="destacado-centro">
-      <div class="foto-envoltura" id="foto-babyspa-envoltura">
+    <p class="conoce-intro revelar-simple">Así se vive un acompañamiento en MAD.</p>
+    <div class="galeria" id="galeria-conoce-mad">
+      <button type="button" class="galeria-item">
+        <img src="img/carousel-dinosaurio.webp" width="1200" height="900" alt="Una terapeuta guía a un niño con disfraz de dinosaurio en un ejercicio de escritura" loading="lazy">
+        <span class="galeria-caption">Cada sesión, un espacio seguro para crecer.</span>
+      </button>
+      <button type="button" class="galeria-item">
         <img src="img/baby-spa.webp" width="1600" height="2724" alt="Tina de hidroterapia vacía del Baby Spa de MAD, con un mural de ballena pintado en la pared" loading="lazy">
+        <span class="galeria-caption">Estimulación acuática en un espacio pensado para bebés.</span>
+      </button>
+      <button type="button" class="galeria-item">
+        <img src="img/carousel-bebe.webp" width="1200" height="1400" alt="Una especialista juega con bloques de construcción junto a un bebé en el piso" loading="lazy">
+        <span class="galeria-caption">Estimulación temprana, mano a mano.</span>
+      </button>
+      <button type="button" class="galeria-item">
+        <img src="img/carousel-coloreando.webp" width="1200" height="716" alt="Una terapeuta acompaña a un niño mientras colorea una hoja de ejercicios" loading="lazy">
+        <span class="galeria-caption">Aprender jugando, con calma y cercanía.</span>
+      </button>
+      <button type="button" class="galeria-item">
+        <img src="img/carousel-lenguaje.webp" width="1200" height="1288" alt="Una psicóloga y un adolescente trabajando juntos en una libreta durante una sesión" loading="lazy">
+        <span class="galeria-caption">Un acompañamiento cercano, sesión a sesión.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="equipo-seccion">
+  <div class="seccion-contenido">
+    <h2 class="revelar">Las personas que te van a <span class="acento">acompañar</span>.</h2>
+    <div class="equipo-grid">
+      <div class="equipo-tarjeta" data-abierto="false">
+        <button class="equipo-tarjeta-boton" data-disclosure-trigger aria-expanded="false" aria-controls="equipo-1">
+          <span class="equipo-monograma" aria-hidden="true">AC</span>
+          <span class="equipo-nombre">Angie Carrera</span>
+          <span class="equipo-rol">Lic. en Psicología · Directora clínica</span>
+          <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="equipo-detalle" id="equipo-1" hidden><p>Psicología infantil, adolescentes, adultos y pareja.</p></div>
       </div>
-      <div class="texto">
-        <span class="eyebrow">Baby Spa</span>
-        <h3>Baby Spa</h3>
-        <p>Estimulación acuática para bebés de 0 a 24 meses. Tarifa Sofkiano: US$15.</p>
+      <div class="equipo-tarjeta" data-abierto="false">
+        <button class="equipo-tarjeta-boton" data-disclosure-trigger aria-expanded="false" aria-controls="equipo-2">
+          <span class="equipo-monograma" aria-hidden="true">AD</span>
+          <span class="equipo-nombre">Andrea Cárdenas</span>
+          <span class="equipo-rol">Psicóloga clínica</span>
+          <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="equipo-detalle" id="equipo-2" hidden><p>Psicología infantil, adolescentes, adultos y pareja.</p></div>
+      </div>
+      <div class="equipo-tarjeta" data-abierto="false">
+        <button class="equipo-tarjeta-boton" data-disclosure-trigger aria-expanded="false" aria-controls="equipo-3">
+          <span class="equipo-monograma" aria-hidden="true">DO</span>
+          <span class="equipo-nombre">Diana Olmedo</span>
+          <span class="equipo-rol">Psicopedagoga</span>
+          <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="equipo-detalle" id="equipo-3" hidden><p>Psicopedagogía y evaluación.</p></div>
+      </div>
+      <div class="equipo-tarjeta" data-abierto="false">
+        <button class="equipo-tarjeta-boton" data-disclosure-trigger aria-expanded="false" aria-controls="equipo-4">
+          <span class="equipo-monograma" aria-hidden="true">DC</span>
+          <span class="equipo-nombre">Diana Cevallos</span>
+          <span class="equipo-rol">Terapeuta de lenguaje</span>
+          <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="equipo-detalle" id="equipo-4" hidden><p>Terapia de lenguaje.</p></div>
+      </div>
+      <div class="equipo-tarjeta" data-abierto="false">
+        <button class="equipo-tarjeta-boton" data-disclosure-trigger aria-expanded="false" aria-controls="equipo-5">
+          <span class="equipo-monograma" aria-hidden="true">KC</span>
+          <span class="equipo-nombre">Katy Capelo</span>
+          <span class="equipo-rol">Estimulación temprana y acuática</span>
+          <svg class="icono-mas" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="equipo-detalle" id="equipo-5" hidden><p>Estimulación temprana y Baby Spa.</p></div>
       </div>
     </div>
   </div>
 </section>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button type="button" class="lightbox-cerrar" id="lightbox-cerrar" aria-label="Cerrar">×</button>
+  <button type="button" class="lightbox-anterior" id="lightbox-anterior" aria-label="Foto anterior">‹</button>
+  <img class="lightbox-imagen" id="lightbox-imagen" src="" alt="">
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+  <button type="button" class="lightbox-siguiente" id="lightbox-siguiente" aria-label="Foto siguiente">›</button>
+</div>
 
 <section class="como-funciona">
   <div class="seccion-contenido">
@@ -757,7 +954,7 @@ a { color: inherit; }
         <div class="paso"><div class="numero">1</div><p>Sofka comparte el beneficio con su equipo. Nosotros entregamos la pieza de comunicación interna.</p></div>
         <div class="paso"><div class="numero">2</div><p>El colaborador nos escribe por WhatsApp con el código SOFKIANO y su credencial de Sofka.</p></div>
         <div class="paso"><div class="numero">3</div><p>Coordinamos su horario según la disponibilidad de nuestra agenda y hacemos una primera valoración para armar un plan a su medida.</p></div>
-        <div class="paso"><div class="numero">4</div><p>Cada semestre coordinamos con People los dos talleres.</p></div>
+        <div class="paso"><div class="numero">4</div><p>Cada semestre coordinamos con People los talleres. Si activan la capa 2, enviamos una factura mensual con el detalle de sesiones, sin información clínica.</p></div>
       </div>
       <div class="panel-derecha">
         <div class="mockup-chat">
@@ -769,7 +966,7 @@ a { color: inherit; }
               <div class="mockup-hora">9:03 a. m.</div>
             </div>
           </div>
-          <div class="mockup-burbuja">Nuevo beneficio de bienestar 💙 Tú, tu pareja y tus hijos tienen terapia a US$15 por sesión en el Centro Psicológico MAD. Escribe al 0999 295 186 con el código SOFKIANO.</div>
+          <div class="mockup-burbuja">Nuevo beneficio de bienestar 💙 Tú, tu pareja y tus hijos tienen terapia a US$20 por sesión en el Centro Psicológico MAD. Escribe al 0999 295 186 con el código SOFKIANO.</div>
         </div>
         <div class="confidencialidad">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color: var(--mad-azul-medio)"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -833,7 +1030,7 @@ a { color: inherit; }
 
 <section class="cierre" id="cierre">
   <div class="seccion-contenido">
-    <img class="logo-mad-cierre" src="img/logo-white.webp" width="801" height="801" alt="MAD, Centro Psicológico" loading="lazy">
+    <img class="logo-mad-cierre" src="img/logo-white-sm.webp" width="240" height="240" alt="MAD, Centro Psicológico" loading="lazy">
     <h2>¿Lo <span class="acento">conversamos</span>?</h2>
     <p class="mensaje">Les proponemos una reunión de 20 minutos para ajustar los temas de los talleres, las fechas y el alcance del convenio.</p>
     <div class="acciones">
@@ -852,7 +1049,7 @@ a { color: inherit; }
   var reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---- Revelar al hacer scroll ---- */
-  var elementos = document.querySelectorAll('.revelar, .revelar-simple, .portada, .cita, .tarjeta-propuesta, .paso, .mockup-chat, .logo-textura, .cierre .seccion-contenido, .foto-envoltura, .calculadora-tarjeta, .plataforma-texto');
+  var elementos = document.querySelectorAll('.revelar, .revelar-simple, .portada, .cita, .tarjeta-propuesta, .paso, .mockup-chat, .logo-textura, .cierre .seccion-contenido, .plataforma-texto');
   if (reducir || !('IntersectionObserver' in window)) {
     elementos.forEach(function (el) { el.classList.add('visible'); });
   } else {
@@ -906,53 +1103,64 @@ a { color: inherit; }
     actualizarBarra();
   }
 
-  /* ---- Selector de pestañas "¿Para quién?" ---- */
-  var tablist = document.querySelector('.tablist');
-  if (tablist) {
-    var tabs = Array.prototype.slice.call(tablist.querySelectorAll('.tab-boton'));
-    var indicador = document.getElementById('tab-indicador');
+  /* ---- Galería "Conoce MAD" + lightbox accesible ---- */
+  var galeria = document.getElementById('galeria-conoce-mad');
+  if (galeria) {
+    var galeriaItems = Array.prototype.slice.call(galeria.querySelectorAll('.galeria-item'));
+    var lightbox = document.getElementById('lightbox');
+    var lbImagen = document.getElementById('lightbox-imagen');
+    var lbCaption = document.getElementById('lightbox-caption');
+    var lbCerrar = document.getElementById('lightbox-cerrar');
+    var lbAnterior = document.getElementById('lightbox-anterior');
+    var lbSiguiente = document.getElementById('lightbox-siguiente');
+    var lbFocusables = [lbCerrar, lbAnterior, lbSiguiente];
+    var indiceActual = 0;
+    var elementoAnteriorFoco = null;
 
-    function moverIndicador(tab) {
-      if (reducir) { indicador.style.transition = 'none'; }
-      indicador.style.width = tab.offsetWidth + 'px';
-      indicador.style.left = tab.offsetLeft + 'px';
+    function abrirLightbox(indice) {
+      indiceActual = indice;
+      var item = galeriaItems[indice];
+      var img = item.querySelector('img');
+      var cap = item.querySelector('.galeria-caption');
+      lbImagen.src = img.src;
+      lbImagen.alt = img.alt;
+      lbCaption.textContent = cap ? cap.textContent : '';
+      elementoAnteriorFoco = document.activeElement;
+      lightbox.hidden = false;
+      lbCerrar.focus();
+      document.addEventListener('keydown', manejarTecladoLightbox);
     }
 
-    function activarTab(tab, enfocar) {
-      tabs.forEach(function (t) {
-        var activo = t === tab;
-        t.setAttribute('aria-selected', activo ? 'true' : 'false');
-        t.tabIndex = activo ? 0 : -1;
-        var panel = document.getElementById(t.getAttribute('aria-controls'));
-        panel.hidden = !activo;
-        panel.dataset.activo = activo ? 'true' : 'false';
-      });
-      moverIndicador(tab);
-      if (enfocar) tab.focus();
+    function cerrarLightbox() {
+      lightbox.hidden = true;
+      document.removeEventListener('keydown', manejarTecladoLightbox);
+      if (elementoAnteriorFoco) elementoAnteriorFoco.focus();
     }
 
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { activarTab(tab, false); });
-      tab.addEventListener('keydown', function (e) {
-        var indice = i;
-        if (e.key === 'ArrowRight') indice = (i + 1) % tabs.length;
-        else if (e.key === 'ArrowLeft') indice = (i - 1 + tabs.length) % tabs.length;
-        else if (e.key === 'Home') indice = 0;
-        else if (e.key === 'End') indice = tabs.length - 1;
-        else return;
+    function manejarTecladoLightbox(e) {
+      if (e.key === 'Escape') { cerrarLightbox(); return; }
+      if (e.key === 'ArrowRight') { abrirLightbox((indiceActual + 1) % galeriaItems.length); return; }
+      if (e.key === 'ArrowLeft') { abrirLightbox((indiceActual - 1 + galeriaItems.length) % galeriaItems.length); return; }
+      if (e.key === 'Tab') {
+        var idx = lbFocusables.indexOf(document.activeElement);
         e.preventDefault();
-        activarTab(tabs[indice], true);
-      });
-    });
+        var siguienteIdx = e.shiftKey
+          ? (idx <= 0 ? lbFocusables.length - 1 : idx - 1)
+          : (idx === lbFocusables.length - 1 ? 0 : idx + 1);
+        lbFocusables[siguienteIdx].focus();
+      }
+    }
 
-    window.addEventListener('resize', function () {
-      var activo = tabs.find(function (t) { return t.getAttribute('aria-selected') === 'true'; });
-      moverIndicador(activo || tabs[0]);
+    galeriaItems.forEach(function (item, i) {
+      item.addEventListener('click', function () { abrirLightbox(i); });
     });
-    moverIndicador(tabs[0]);
+    lbCerrar.addEventListener('click', cerrarLightbox);
+    lbAnterior.addEventListener('click', function () { abrirLightbox((indiceActual - 1 + galeriaItems.length) % galeriaItems.length); });
+    lbSiguiente.addEventListener('click', function () { abrirLightbox((indiceActual + 1) % galeriaItems.length); });
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) cerrarLightbox(); });
   }
 
-  /* ---- Disclosures (acordeones de condiciones + tarjetas de servicio) ---- */
+  /* ---- Disclosures (acordeones de condiciones, tarjetas de servicio, capas, equipo) ---- */
   function alternarDisclosure(boton) {
     var contenedor = boton.closest('[data-abierto]');
     var detalle = document.getElementById(boton.getAttribute('aria-controls'));
@@ -985,36 +1193,199 @@ a { color: inherit; }
     boton.addEventListener('click', function () { alternarDisclosure(boton); });
   });
 
-  /* ---- Calculadora del beneficio ---- */
-  var sliderPersonas = document.getElementById('slider-personas');
-  if (sliderPersonas) {
-    var sliderSesiones = document.getElementById('slider-sesiones');
-    var sliderMeses = document.getElementById('slider-meses');
-    var valorPersonas = document.getElementById('valor-personas');
-    var valorSesiones = document.getElementById('valor-sesiones');
-    var valorMeses = document.getElementById('valor-meses');
-    var resultadoAhorro = document.getElementById('resultado-ahorro');
-    var resultadoDetalle = document.getElementById('resultado-detalle');
+  /* Con prefers-reduced-motion, las dos capas aparecen ya armadas y abiertas */
+  if (reducir) {
+    document.querySelectorAll('.capa [data-disclosure-trigger]').forEach(function (boton) {
+      alternarDisclosure(boton);
+    });
+  }
 
-    function actualizarCalculadora() {
-      var personas = parseInt(sliderPersonas.value, 10);
-      var sesiones = parseInt(sliderSesiones.value, 10);
-      var meses = parseInt(sliderMeses.value, 10);
-      valorPersonas.textContent = personas;
-      valorSesiones.textContent = sesiones;
-      valorMeses.textContent = meses;
-      var b = personas * sesiones * meses * 25;
-      var a = personas * sesiones * meses * 15;
-      var x = b - a;
-      resultadoAhorro.textContent = 'Ahorro: US$' + x;
-      resultadoDetalle.textContent = 'Pagan US$' + a + ' en lugar de US$' + b + '.';
-      if (!reducir) {
-        resultadoAhorro.classList.add('pulso');
-        setTimeout(function () { resultadoAhorro.classList.remove('pulso'); }, 220);
+  /* ---- Arma tu familia Sofkiana ---- */
+  var contFamilia = document.getElementById('familia-miembros');
+  if (contFamilia) {
+    var SERVICIOS_POR_TIPO = {
+      tu: [
+        { id: 'individual', nombre: 'Terapia individual', pro: 'Angie Carrera · Andrea Cárdenas' },
+        { id: 'pareja', nombre: 'Terapia de pareja', pro: 'Angie Carrera · Andrea Cárdenas', requierePareja: true }
+      ],
+      pareja: [
+        { id: 'individual', nombre: 'Terapia individual', pro: 'Angie Carrera · Andrea Cárdenas' },
+        { id: 'pareja', nombre: 'Terapia de pareja', pro: 'Angie Carrera · Andrea Cárdenas', requierePareja: true }
+      ],
+      bebe: [
+        { id: 'estimulacion', nombre: 'Estimulación temprana', pro: 'Katy Capelo' },
+        { id: 'babyspa', nombre: 'Baby Spa, estimulación acuática', pro: 'Katy Capelo' }
+      ],
+      nino: [
+        { id: 'infantil', nombre: 'Psicología infantil', pro: 'Angie Carrera · Andrea Cárdenas' },
+        { id: 'lenguaje', nombre: 'Terapia de lenguaje', pro: 'Diana Cevallos' },
+        { id: 'psicopedagogia', nombre: 'Psicopedagogía y evaluación', pro: 'Diana Olmedo' }
+      ],
+      adolescente: [
+        { id: 'adolescentes', nombre: 'Psicología para adolescentes', pro: 'Angie Carrera · Andrea Cárdenas' },
+        { id: 'psicopedagogia-adol', nombre: 'Psicopedagogía', pro: 'Diana Olmedo' }
+      ]
+    };
+    var NOMBRE_TIPO = { tu: 'Tú', pareja: 'Tu pareja', bebe: 'Bebé (0–2 años)', nino: 'Niño o niña (3–11)', adolescente: 'Adolescente (12–17)' };
+    var SINGULAR = { tu: true, pareja: true };
+    var MAX_INTEGRANTES = 6;
+
+    var familia = [];
+    var contadorId = 0;
+
+    function tipoPresente(tipo) { return familia.some(function (m) { return m.tipo === tipo; }); }
+
+    function serviciosDisponibles(miembro) {
+      return (SERVICIOS_POR_TIPO[miembro.tipo] || []).filter(function (s) {
+        if (s.requierePareja) { return tipoPresente('tu') && tipoPresente('pareja'); }
+        return true;
+      });
+    }
+
+    function nombreServicio(tipo, servicioId) {
+      var lista = SERVICIOS_POR_TIPO[tipo] || [];
+      var s = lista.filter(function (x) { return x.id === servicioId; })[0];
+      return s ? s.nombre : '';
+    }
+
+    function crearMiembro(tipo) {
+      contadorId++;
+      familia.push({ id: 'm' + contadorId, tipo: tipo, sesiones: 4, servicios: [] });
+      renderizarFamilia();
+    }
+
+    function quitarMiembro(id) {
+      familia = familia.filter(function (m) { return m.id !== id; });
+      renderizarFamilia(true);
+    }
+
+    function alternarServicioMiembro(miembroId, servicioId) {
+      var m = familia.filter(function (x) { return x.id === miembroId; })[0];
+      if (!m) return;
+      var i = m.servicios.indexOf(servicioId);
+      if (i === -1) m.servicios.push(servicioId); else m.servicios.splice(i, 1);
+      renderizarFamilia(true);
+    }
+
+    function cambiarSesionesMiembro(miembroId, valor) {
+      var m = familia.filter(function (x) { return x.id === miembroId; })[0];
+      if (!m) return;
+      m.sesiones = parseInt(valor, 10);
+      actualizarResumenFamilia();
+    }
+
+    function renderizarFamilia(saltarAnimacion) {
+      document.querySelectorAll('.chip-agregar').forEach(function (chip) {
+        var tipo = chip.getAttribute('data-tipo');
+        var lleno = familia.length >= MAX_INTEGRANTES;
+        var singularUsado = SINGULAR[tipo] && tipoPresente(tipo);
+        chip.disabled = lleno || singularUsado;
+      });
+      var limite = document.getElementById('familia-limite');
+      limite.textContent = familia.length >= MAX_INTEGRANTES ? 'Llegaste al máximo de 6 integrantes.' : '';
+
+      contFamilia.innerHTML = '';
+      if (!familia.length) {
+        var vacio = document.createElement('p');
+        vacio.className = 'familia-vacio';
+        vacio.textContent = 'Agrega a los integrantes de tu familia para ver cómo los acompañamos.';
+        contFamilia.appendChild(vacio);
+      }
+      familia.forEach(function (m) {
+        var tarjeta = document.createElement('div');
+        tarjeta.className = 'miembro-tarjeta';
+        tarjeta.dataset.id = m.id;
+        var disponibles = serviciosDisponibles(m);
+        var chipsHtml = disponibles.map(function (s) {
+          var activo = m.servicios.indexOf(s.id) !== -1;
+          return '<button type="button" class="chip-servicio" aria-pressed="' + activo + '" data-servicio="' + s.id + '">' + s.nombre + '<span class="chip-pro">' + s.pro + '</span></button>';
+        }).join('');
+        tarjeta.innerHTML =
+          '<div class="miembro-cabecera">' +
+            '<span class="miembro-avatar tipo-' + m.tipo + '" aria-hidden="true"></span>' +
+            '<span class="miembro-nombre">' + NOMBRE_TIPO[m.tipo] + '</span>' +
+            '<button type="button" class="miembro-quitar" aria-label="Quitar a ' + NOMBRE_TIPO[m.tipo] + '">&times;</button>' +
+          '</div>' +
+          '<div class="miembro-servicios" role="group" aria-label="Servicios para ' + NOMBRE_TIPO[m.tipo] + '">' + chipsHtml + '</div>' +
+          '<div class="miembro-sesiones">' +
+            '<label>' +
+              '<span>Sesiones al mes <output>' + m.sesiones + '</output></span>' +
+              '<input type="range" min="1" max="8" step="1" value="' + m.sesiones + '">' +
+            '</label>' +
+          '</div>';
+
+        tarjeta.querySelector('.miembro-quitar').addEventListener('click', function () { quitarMiembro(m.id); });
+        Array.prototype.forEach.call(tarjeta.querySelectorAll('.chip-servicio'), function (chip) {
+          chip.addEventListener('click', function () { alternarServicioMiembro(m.id, chip.getAttribute('data-servicio')); });
+        });
+        var slider = tarjeta.querySelector('input[type="range"]');
+        var salida = tarjeta.querySelector('output');
+        slider.addEventListener('input', function () {
+          salida.textContent = slider.value;
+          cambiarSesionesMiembro(m.id, slider.value);
+        });
+
+        contFamilia.appendChild(tarjeta);
+        if (reducir || saltarAnimacion) {
+          tarjeta.classList.add('visible');
+        } else {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { tarjeta.classList.add('visible'); });
+          });
+        }
+      });
+
+      actualizarResumenFamilia();
+    }
+
+    function actualizarResumenFamilia() {
+      var totalSesiones = familia.reduce(function (acc, m) { return acc + m.sesiones; }, 0);
+      var conMad = totalSesiones * 20;
+      var regular = totalSesiones * 25;
+      var ahorroAnual = (regular - conMad) * 12;
+      document.getElementById('resumen-con-mad').textContent = 'US$' + conMad + ' al mes';
+      document.getElementById('resumen-regular').textContent = 'US$' + regular;
+      document.getElementById('resumen-ahorro').textContent = 'US$' + ahorroAnual;
+
+      var partes = familia.map(function (m) {
+        var nombresServ = m.servicios.map(function (sid) { return nombreServicio(m.tipo, sid); });
+        var etiqueta = m.tipo === 'tu' ? 'mí' : NOMBRE_TIPO[m.tipo];
+        return etiqueta + (nombresServ.length ? ' (' + nombresServ.join(', ') + ')' : '');
+      });
+      var listaTexto = partes.length ? partes.join('; ') : 'mi familia';
+      var mensaje = 'Hola, soy Sofkiano y quiero el beneficio MAD (código SOFKIANO) para: ' + listaTexto + '.';
+      document.getElementById('resumen-whatsapp').href = 'https://wa.me/593999295186?text=' + encodeURIComponent(mensaje);
+    }
+
+    document.querySelectorAll('.chip-agregar').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        if (chip.disabled) return;
+        crearMiembro(chip.getAttribute('data-tipo'));
+      });
+    });
+
+    crearMiembro('tu');
+  }
+
+  /* ---- El panel de resumen fijo (móvil) solo se muestra cerca de "Arma tu familia" ---- */
+  var resumenFamiliaPanel = document.getElementById('resumen-familia');
+  var seccionFamilia = document.getElementById('arma-familia');
+  if (resumenFamiliaPanel && seccionFamilia) {
+    var mqFamiliaMovil = window.matchMedia('(max-width: 900px)');
+    function actualizarVisibilidadResumen(enViewport) {
+      if (mqFamiliaMovil.matches) {
+        resumenFamiliaPanel.classList.toggle('resumen-oculto', !enViewport);
+      } else {
+        resumenFamiliaPanel.classList.remove('resumen-oculto');
       }
     }
-    [sliderPersonas, sliderSesiones, sliderMeses].forEach(function (s) {
-      s.addEventListener('input', actualizarCalculadora);
+    var observadorResumen = new IntersectionObserver(function (entradas) {
+      actualizarVisibilidadResumen(entradas[0].isIntersecting);
+    }, { threshold: 0 });
+    observadorResumen.observe(seccionFamilia);
+    mqFamiliaMovil.addEventListener('change', function () {
+      var r = seccionFamilia.getBoundingClientRect();
+      actualizarVisibilidadResumen(r.top < window.innerHeight && r.bottom > 0);
     });
   }
 
