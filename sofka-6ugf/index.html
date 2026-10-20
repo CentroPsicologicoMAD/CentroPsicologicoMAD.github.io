@@ -83,10 +83,9 @@ a { color: inherit; }
   pointer-events: none;
 }
 .logo-firma { margin-bottom: 2.25rem; position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.7rem; }
-.logo-firma img { height: 88px; opacity: 0.95; animation: respirar-logo 5s ease-in-out infinite; }
+.logo-firma img { height: 140px; display: block; }
 .logo-firma .marca-texto { font-family: var(--mad-fuente-titulos); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.95; }
-@media (min-width: 640px) { .logo-firma img { height: 120px; } }
-@keyframes respirar-logo { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@media (min-width: 640px) { .logo-firma img { height: 160px; } }
 
 .portada .etiqueta {
   font-family: var(--mad-fuente-titulos); font-size: 0.85rem; letter-spacing: 0.04em;
@@ -533,7 +532,7 @@ a { color: inherit; }
 .cierre p.mensaje { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.25rem; opacity: 0.92; }
 .cierre .acciones { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
 .cierre .contacto { font-size: 0.95rem; opacity: 0.88; margin-bottom: 2.5rem; }
-.cierre .logo-mad-cierre { height: 80px; opacity: 0.92; margin-bottom: 1.5rem; }
+.cierre .logo-mad-cierre { height: 120px; display: block; margin: 0 auto 1.5rem; }
 .cierre footer { font-size: 0.82rem; opacity: 0.85; }
 
 /* ===== Revelar genérico (fade + slide estándar, no protagonista) ===== */
@@ -556,7 +555,6 @@ a { color: inherit; }
     opacity: 1 !important; transform: none !important; transition: none !important;
   }
   .logo-textura.visible { opacity: 0.1 !important; }
-  .logo-firma img { animation: none !important; }
   .boton { transition: none !important; }
   .angulo-seccion .forma { transform: none !important; }
   .disclosure-detalle, .disclosure-cabecera .icono-mas,
@@ -585,7 +583,7 @@ a { color: inherit; }
 <section class="portada" id="portada">
   <div class="seccion-contenido">
     <div class="logo-firma">
-      <img src="img/logo-white-sm.webp" width="240" height="240" alt="MAD, Centro Psicológico">
+      <img src="img/logo-white-1x.png" srcset="img/logo-white-1x.png 1x, img/logo-white-original.png 2x" width="180" height="180" alt="MAD, Centro Psicológico">
       <span class="marca-texto">Centro Psicológico MAD</span>
     </div>
     <p class="etiqueta">Propuesta de convenio · Centro Psicológico MAD × Sofka Technologies</p>
@@ -1030,7 +1028,7 @@ a { color: inherit; }
 
 <section class="cierre" id="cierre">
   <div class="seccion-contenido">
-    <img class="logo-mad-cierre" src="img/logo-white-sm.webp" width="240" height="240" alt="MAD, Centro Psicológico" loading="lazy">
+    <img class="logo-mad-cierre" src="img/logo-white-1x.png" srcset="img/logo-white-1x.png 1x, img/logo-white-original.png 2x" width="180" height="180" alt="MAD, Centro Psicológico" loading="lazy">
     <h2>¿Lo <span class="acento">conversamos</span>?</h2>
     <p class="mensaje">Les proponemos una reunión de 20 minutos para ajustar los temas de los talleres, las fechas y el alcance del convenio.</p>
     <div class="acciones">
